@@ -65,26 +65,26 @@ MonoBehaviour:
   ShootType: 2
   ProjectilePrefab: {fileID: 2667221875233493520, guid: cede1f15c8da9b446881354291ef32d8,
     type: 3}
-  DelayBetweenShots: 1
-  BulletSpreadAngle: 0
+  DelayBetweenShots: 3
+  BulletSpreadAngle: 1
   BulletsPerShot: 1
-  RecoilForce: 2
-  AimZoomRatio: 0.298
+  RecoilForce: 1.58
+  AimZoomRatio: 0.908
   AimOffset: {x: 0, y: 0, z: 0}
   AutomaticReload: 1
-  HasPhysicalBullets: 1
-  ClipSize: 180
+  HasPhysicalBullets: 0
+  ClipSize: 30
   ShellCasing: {fileID: 0}
   EjectionPort: {fileID: 0}
   ShellCasingEjectionForce: 2
   ShellPoolSize: 1
   AmmoReloadRate: 1
-  AmmoReloadDelay: 1
-  MaxAmmo: 4
+  AmmoReloadDelay: 3
+  MaxAmmo: 5
   AutomaticReleaseOnCharged: 0
-  MaxChargeDuration: 1.46
+  MaxChargeDuration: 5
   AmmoUsedOnStartCharge: 1
-  AmmoUsageRateWhileCharging: 1
+  AmmoUsageRateWhileCharging: 2
   WeaponAnimator: {fileID: 0}
   MuzzleFlashPrefab: {fileID: 0}
   UnparentMuzzleFlash: 0

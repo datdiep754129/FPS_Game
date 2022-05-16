@@ -141,11 +141,11 @@ namespace Unity.FPS.Gameplay
                 return 1f;
             }
         }
-
         Health m_Health;
         PlayerInputHandler m_InputHandler;
         CharacterController m_Controller;
         PlayerWeaponsManager m_WeaponsManager;
+        WeaponController m_WeaponController;
         Actor m_Actor;
         Vector3 m_GroundNormal;
         Vector3 m_CharacterVelocity;
@@ -160,6 +160,7 @@ namespace Unity.FPS.Gameplay
 
         void Awake()
         {
+            rb = GetComponent<Rigidbody>();
             ActorsManager actorsManager = FindObjectOfType<ActorsManager>();
             if (actorsManager != null)
                 actorsManager.SetPlayer(gameObject);
@@ -207,7 +208,7 @@ namespace Unity.FPS.Gameplay
                 {
                     isRightWall = true;
                     isLeftWall = false;
-                    Debug.Log("IsRightWall");
+                    Debug.Log("false");
                 }
             }
             if (Physics.Raycast(head.transform.position, -head.transform.right, out leftRaycast))
@@ -217,7 +218,7 @@ namespace Unity.FPS.Gameplay
                 {
                     isRightWall = false;
                     isLeftWall = true;
-                    Debug.Log("isLeftWall");
+                    Debug.Log("true");
                 }
             }
 
@@ -230,6 +231,25 @@ namespace Unity.FPS.Gameplay
                 isWallRunning = true;
                 rb.useGravity = false;
 
+                Debug.Log("Enter");
+                if (isLeftWall)
+                {
+                    cam.transform.localEulerAngles = new Vector3(0f, 0f, -10f);
+                }
+                if (isRightWall)
+                {
+                    cam.transform.localEulerAngles = new Vector3(0f, 0f, 10f);
+                }
+            }
+        }
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.transform.CompareTag("RunnableWall"))
+            {
+                isWallRunning = true;
+                rb.useGravity = false;
+
+                Debug.Log("Enter");
                 if (isLeftWall)
                 {
                     cam.transform.localEulerAngles = new Vector3(0f, 0f, -10f);
@@ -245,6 +265,7 @@ namespace Unity.FPS.Gameplay
         {
             if (collision.transform.CompareTag("RunnableWall"))
             {
+                Debug.Log("Stay");
                 if (Input.GetKey(KeyCode.Space) && isLeftWall)
                 {
                     rb.AddForce(Vector3.up * _wallRunUpForce, ForceMode.Impulse);
@@ -253,16 +274,19 @@ namespace Unity.FPS.Gameplay
                 {
                     rb.AddForce(Vector3.up * _wallRunUpForce, ForceMode.Impulse);
                 }
+
             }
         }
 
         private void OnCollisionExit(Collision collision)
         {
+            Debug.Log("out");
             if (collision.transform.CompareTag("RunnableWall"))
             {
                 cam.transform.localEulerAngles = new Vector3(0f, 0, 0);
                 isWallRunning = false;
                 rb.useGravity = true;
+
             }
         }
         ////////////////////////////// ////////////////////////////// ////////////////////////////// ////////////////////////////// ////////////////////////////// //////////////////////////////
@@ -434,6 +458,7 @@ namespace Unity.FPS.Gameplay
                             // Force grounding to false
                             IsGrounded = false;
                             m_GroundNormal = Vector3.up;
+                            m_WeaponController.CrosshairDataDefault.CrosshairSize += 10;
                             Debug.Log("Grounded = false");
                         }
                     }
@@ -518,6 +543,7 @@ namespace Unity.FPS.Gameplay
                 Debug.Log("# Grounded");
             }
         }
+
         void UpdateCharacterHeight(bool force)
         {
             // Update height instantly

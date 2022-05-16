@@ -96,8 +96,8 @@ MonoBehaviour:
   ProjectilePrefab: {fileID: 8924682559891268397, guid: f05c7e6fbbfbe824388456bb4abff9d4,
     type: 3}
   DelayBetweenShots: 0.2
-  BulletSpreadAngle: 7
-  BulletsPerShot: 5
+  BulletSpreadAngle: 8
+  BulletsPerShot: 10
   RecoilForce: 1
   AimZoomRatio: 0.7
   AimOffset: {x: 0, y: 0.13, z: 0}
@@ -108,9 +108,9 @@ MonoBehaviour:
   EjectionPort: {fileID: 0}
   ShellCasingEjectionForce: 2
   ShellPoolSize: 1
-  AmmoReloadRate: 1.1
+  AmmoReloadRate: 7
   AmmoReloadDelay: 1
-  MaxAmmo: 10
+  MaxAmmo: 15
   AutomaticReleaseOnCharged: 0
   MaxChargeDuration: 1
   AmmoUsedOnStartCharge: 0
@@ -326,7 +326,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8088409166493606719}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.02, z: 1.477}
+  m_LocalPosition: {x: 0.166, y: -0.08, z: 1.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

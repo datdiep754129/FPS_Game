@@ -196,6 +196,9 @@ namespace Unity.FPS.Game
             }
         }
 
+        public void CheckCrouch()
+        {
+        }
         public void AddCarriablePhysicalBullets(int count) => m_CarriedPhysicalBullets = Mathf.Max(m_CarriedPhysicalBullets + count, MaxAmmo);
 
         void ShootShell()

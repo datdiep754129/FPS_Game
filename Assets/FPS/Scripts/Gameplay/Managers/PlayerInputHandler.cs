@@ -20,6 +20,7 @@ namespace Unity.FPS.Gameplay
         [Tooltip("Used to flip the horizontal input axis")]
         public bool InvertXAxis = false;
 
+        public static WeaponController weapControl;
         GameFlowManager m_GameFlowManager;
         PlayerCharacterController m_PlayerCharacterController;
         bool m_FireInputWasHeld;
@@ -61,6 +62,7 @@ namespace Unity.FPS.Gameplay
 
             return Vector3.zero;
         }
+
 
         public float GetLookInputsHorizontal()
         {
@@ -151,6 +153,11 @@ namespace Unity.FPS.Gameplay
             if (CanProcessInput())
             {
                 return Input.GetButtonDown(GameConstants.k_ButtonNameCrouch);
+                /**
+                weapControl.CrosshairDataDefault.CrosshairSize -= 10;
+                weapControl.CrosshairDataTargetInSight.CrosshairSize -= 10;
+                weapControl.CrosshairDataDefault.CrosshairColor = Color.black;
+                **/
             }
 
             return false;
@@ -160,6 +167,7 @@ namespace Unity.FPS.Gameplay
         {
             if (CanProcessInput())
             {
+                Debug.Log("CroucReleased");
                 return Input.GetButtonUp(GameConstants.k_ButtonNameCrouch);
             }
 
