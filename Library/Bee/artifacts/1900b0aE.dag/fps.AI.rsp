@@ -356,6 +356,7 @@
 "Assets/FPS/Scripts/AI/EXPManager.cs"
 "Assets/FPS/Scripts/AI/FollowPlayer.cs"
 "Assets/FPS/Scripts/AI/HealBonus.cs"
+"Assets/FPS/Scripts/AI/Location_C.cs"
 "Assets/FPS/Scripts/AI/NavigationModule.cs"
 "Assets/FPS/Scripts/AI/PatrolPath.cs"
 "Assets/FPS/Scripts/AI/SpawnManager.cs"

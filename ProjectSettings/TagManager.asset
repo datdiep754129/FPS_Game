@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - RunnableWall
+  - Location_C
+  - Location_A
+  - Location_B
   layers:
   - Default
   - TransparentFX

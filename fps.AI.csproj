@@ -61,16 +61,17 @@
     <Compile Include="Assets\FPS\Scripts\AI\HealBonus.cs" />
     <Compile Include="Assets\FPS\Scripts\AI\EXPDrop.cs" />
     <Compile Include="Assets\FPS\Scripts\AI\FollowPlayer.cs" />
+    <Compile Include="Assets\FPS\Scripts\AI\EnemiesLocation_1.cs" />
     <Compile Include="Assets\FPS\Scripts\AI\EXPManager.cs" />
+    <Compile Include="Assets\FPS\Scripts\AI\Spawn_2.cs" />
     <Compile Include="Assets\FPS\Scripts\AI\NavigationModule.cs" />
     <Compile Include="Assets\FPS\Scripts\AI\PatrolPath.cs" />
+    <Compile Include="Assets\FPS\Scripts\AI\EnemiesLocation_2.cs" />
     <Compile Include="Assets\FPS\Scripts\AI\EnemyMobile.cs" />
+    <Compile Include="Assets\FPS\Scripts\AI\SpawnManager.cs" />
     <Compile Include="Assets\FPS\Scripts\AI\DetectionModule.cs" />
     <Compile Include="Assets\FPS\Scripts\AI\EnemyController.cs" />
-    <Compile Include="Assets\FPS\Scripts\AI\SpawnManager.cs" />
-    <Compile Include="Assets\FPS\Scripts\AI\EnemiesLocation_1.cs" />
-    <Compile Include="Assets\FPS\Scripts\AI\Spawn_2.cs" />
-    <Compile Include="Assets\FPS\Scripts\AI\EnemiesLocation_2.cs" />
+    <Compile Include="Assets\FPS\Scripts\AI\Location_C.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\FPS\Scripts\AI\fps.AI.asmdef" />

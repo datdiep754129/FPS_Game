@@ -5,18 +5,20 @@ using Unity.FPS.AI;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject autoBot_1;
-    public GameObject autoBot_2;
-    public GameObject autoBot_3;
-    public GameObject autoBot_4;
+    public List<GameObject> autoBot;
     public bool hasCooldown;
     public int respawnCooldown = 5;
     public float positionX_A;
     public float positionZ_A;
     public float positionX_B;
     public float positionZ_B;
-    public int enemyCount;
+    public int Enemies;
     public int waveNumber = 1;
+    public int Checkbot = 0;
+    public int EnemiesToSpawn;
+    public string tag;
+
+    public bool waveUp;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,58 +28,111 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        enemyCount = FindObjectsOfType<EnemiesLocation_1>().Length;
-        if(enemyCount == 0 && hasCooldown == false)
-        {
-            hasCooldown = true;
-            StartCoroutine(RespawnCooldown());
-            waveNumber++;
-            Debug.Log("E=0");
-        }
+        int randomBot = Random.Range(0, autoBot.Count);
+        checkWaveUp();
+        autoBot[randomBot].gameObject.tag = tag;
     }
     IEnumerator RespawnCooldown()
     {
         yield return new WaitForSeconds(respawnCooldown);
         hasCooldown = false;
         Debug.Log("Spawn");
-        SpawnEnemyWave(waveNumber);
+        if (waveUp)
+        {
+            SpawnEnemyWave(waveNumber);
+        }
+        else
+        {
+            SpawnRandomEnemies();
+        }
 
+    }
+
+    void checkWaveUp()
+    {
+        Enemies = GameObject.FindGameObjectsWithTag(tag).Length;
+        if (waveUp == true)
+        {
+            if (Enemies == 0 && hasCooldown == false)
+            {
+                hasCooldown = true;
+                StartCoroutine(RespawnCooldown());
+                waveNumber++;
+            }
+            /**
+            if (enemyCount == 0 && hasCooldown == false)
+            {
+                hasCooldown = true;
+                StartCoroutine(RespawnCooldown());
+                waveNumber++;
+            }
+            **/
+        }
+        if (waveUp != true)
+        {
+            if (Enemies < EnemiesToSpawn && hasCooldown == false)
+            {
+                hasCooldown = true;
+                StartCoroutine(RespawnCooldown());
+            }
+        }
+        
     }
     private Vector3 GenerateSpawnPosition()
     {
         float spawnPosX = Random.Range(positionX_A, positionX_B);
         float spawnPosZ = Random.Range(positionZ_A, positionZ_B);
-        Vector3 randomPos = new Vector3(spawnPosX, 0, spawnPosZ);
+        Vector3 randomPos = new Vector3(spawnPosX, this.transform.position.y, spawnPosZ);
         return randomPos;
+    }
+    void SpawnRandomEnemies()
+    {
+        int randomBot = Random.Range(1, autoBot.Count);
+        Instantiate(autoBot[randomBot], GenerateSpawnPosition(), autoBot[randomBot].transform.rotation);
+        Debug.Log("Spawn + " + randomBot);
     }
     void SpawnEnemyWave(int enemiesToSpawn)
     {
-        if(waveNumber <= 5)
+
+        if (waveNumber <= 4 && Checkbot <= autoBot.Count)
         {
             for (int i = 0; i < enemiesToSpawn; i++)
             {
-                Instantiate(autoBot_1, GenerateSpawnPosition(), autoBot_1.transform.rotation);
+                Instantiate(autoBot[Checkbot], GenerateSpawnPosition(), autoBot[Checkbot].transform.rotation);
             }
         }
-        else if(waveNumber >5 && waveNumber <= 7)
+        else if(waveNumber >4 && waveNumber <= 7 && Checkbot <= autoBot.Count)
         {
+            if (waveNumber == 5)
+            {
+                Checkbot++;
+            }
             for (int i = 0; i < enemiesToSpawn; i++)
             {
-                Instantiate(autoBot_2, GenerateSpawnPosition(), autoBot_2.transform.rotation);
+                Instantiate(autoBot[Checkbot], GenerateSpawnPosition(), autoBot[Checkbot].transform.rotation);
             }
         }
-        else if(waveNumber > 7 && waveNumber < 11)
+        else if(waveNumber > 7 && waveNumber < 11 && Checkbot <= autoBot.Count)
         {
+            if (waveNumber == 8)
+            {
+                Checkbot++;
+            }
+
             for (int i = 0; i < enemiesToSpawn; i++)
             {
-                Instantiate(autoBot_3, GenerateSpawnPosition(), autoBot_3.transform.rotation);
+                Instantiate(autoBot[Checkbot], GenerateSpawnPosition(), autoBot[Checkbot].transform.rotation);
             }
         }
         else
         {
+            if(waveNumber == 12)
+            {
+                Checkbot++;
+            }
             for (int i = 0; i < enemiesToSpawn; i++)
             {
-                Instantiate(autoBot_4, GenerateSpawnPosition(), autoBot_4.transform.rotation);
+                Instantiate(autoBot[Checkbot], GenerateSpawnPosition(), autoBot[Checkbot].transform.rotation);
             }
         }
     }

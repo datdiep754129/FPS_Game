@@ -208,7 +208,6 @@ namespace Unity.FPS.Gameplay
                 {
                     isRightWall = true;
                     isLeftWall = false;
-                    Debug.Log("false");
                 }
             }
             if (Physics.Raycast(head.transform.position, -head.transform.right, out leftRaycast))
@@ -218,7 +217,6 @@ namespace Unity.FPS.Gameplay
                 {
                     isRightWall = false;
                     isLeftWall = true;
-                    Debug.Log("true");
                 }
             }
 
